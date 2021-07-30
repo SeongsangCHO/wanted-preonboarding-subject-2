@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Navbar from "../../Components/Navbar";
+import Navbar from "../Navbar";
 
-class RecentListPage extends Component {
+class Header extends Component {
   constructor(props) {
     super(props);
   }
@@ -23,16 +23,14 @@ class RecentListPage extends Component {
 
   render() {
     return (
-      <div>
-        recentListPage
+      <header>
+        header
         <Navbar></Navbar>
-        <div>관심상품</div>
-        <div>상품정보</div>
-      </div>
+      </header>
     );
   }
 }
 
-RecentListPage.propTypes = {};
+Header.propTypes = {};
 
-export default RecentListPage;
+export default Header;

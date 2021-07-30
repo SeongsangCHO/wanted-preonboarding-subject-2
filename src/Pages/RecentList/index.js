@@ -14,22 +14,12 @@ class RecentListPage extends Component {
 
   componentWillReceiveProps(nextProps) {}
 
-  shouldComponentUpdate(nextProps, nextState) {}
-
-  componentWillUpdate(nextProps, nextState) {}
-
   componentDidUpdate(prevProps, prevState) {}
 
   componentWillUnmount() {}
 
   render() {
-    return (
-      <Container>
-        <Header />
-        <div>관심상품</div>
-        <div>상품정보</div>
-      </Container>
-    );
+    return <Container></Container>;
   }
 }
 

@@ -11,9 +11,7 @@ class Navbar extends Component {
 
   componentWillMount() {}
 
-  componentDidMount() {
-    console.log(this.state);
-  }
+  componentDidMount() {}
 
   componentWillReceiveProps(nextProps) {}
 
@@ -30,7 +28,9 @@ class Navbar extends Component {
           <PageSelector>
             <Link
               className={
-                window.location.pathname === "/product" ? "disable-link" : "active-link"
+                window.location.pathname === "/product"
+                  ? "disable-link"
+                  : "active-link"
               }
               to='/product'
             >
@@ -41,7 +41,9 @@ class Navbar extends Component {
             <Link
               to='/recentList'
               className={
-                window.location.pathname === "/recentList" ? "disable-link" : "active-link"
+                window.location.pathname === "/recentList"
+                  ? "disable-link"
+                  : "active-link"
               }
             >
               최근 이력

@@ -9,6 +9,7 @@ import ProductPage from "./Pages/Product";
 import RecentListPage from "./Pages/RecentList";
 import { Container } from "./Styles/globalStyles";
 import GlobalStyle from "./Styles/globalStyles";
+import Header from "./Components/Header";
 
 class App extends React.Component {
   render() {
@@ -17,6 +18,7 @@ class App extends React.Component {
         <GlobalStyle />
         <Container>
           <Switch>
+            <Header></Header>
             <Route exact path='/'>
               <Redirect to='/recentList'></Redirect>
             </Route>

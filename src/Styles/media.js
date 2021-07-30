@@ -1,0 +1,16 @@
+import { css } from "styled-components";
+
+const sizes = {
+  web: 1024,
+  mobile: 768,
+};
+
+export default Object.keys(sizes).reduce((acc, label) => {
+  acc[label] = (...args) => css`
+    @media (max-width: ${sizes[label]}px) {
+      ${css(...args)};
+    }
+  `;
+  return acc;
+}, {});
+

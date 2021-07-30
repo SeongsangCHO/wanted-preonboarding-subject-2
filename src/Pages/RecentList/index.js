@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import Header from "../../Components/Header";
 import { Container } from "./style";
 
@@ -19,7 +18,11 @@ class RecentListPage extends Component {
   componentWillUnmount() {}
 
   render() {
-    return <Container></Container>;
+    return (
+      <Container>
+        <Header></Header>
+      </Container>
+    );
   }
 }
 

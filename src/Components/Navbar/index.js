@@ -30,7 +30,7 @@ class Navbar extends Component {
           <PageSelector>
             <Link
               className={
-                window.location.pathname === "/product" ? "disable-link" : ""
+                window.location.pathname === "/product" ? "disable-link" : "active-link"
               }
               to='/product'
             >
@@ -41,7 +41,7 @@ class Navbar extends Component {
             <Link
               to='/recentList'
               className={
-                window.location.pathname === "/recentList" ? "disable-link" : ""
+                window.location.pathname === "/recentList" ? "disable-link" : "active-link"
               }
             >
               최근 이력

@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import Header from "../../Components/Header";
+import { Container } from "../../Components/Header/style";
 
 class ProductPage extends Component {
   constructor(props) {
@@ -21,7 +23,11 @@ class ProductPage extends Component {
   componentWillUnmount() {}
 
   render() {
-    return <div>Product Page</div>;
+    return (
+      <Container>
+        <Header></Header>
+      </Container>
+    );
   }
 }
 

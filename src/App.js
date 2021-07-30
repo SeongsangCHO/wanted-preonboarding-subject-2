@@ -18,7 +18,6 @@ class App extends React.Component {
         <GlobalStyle />
         <Container>
           <Switch>
-            <Header></Header>
             <Route exact path='/'>
               <Redirect to='/recentList'></Redirect>
             </Route>

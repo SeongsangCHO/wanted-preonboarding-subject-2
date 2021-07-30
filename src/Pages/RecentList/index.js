@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Navbar from "../../Components/Navbar";
+import Header from "../../Components/Header";
+import { Container } from "./style";
 
 class RecentListPage extends Component {
   constructor(props) {
@@ -23,12 +24,11 @@ class RecentListPage extends Component {
 
   render() {
     return (
-      <div>
-        recentListPage
-        <Navbar></Navbar>
+      <Container>
+        <Header />
         <div>관심상품</div>
         <div>상품정보</div>
-      </div>
+      </Container>
     );
   }
 }

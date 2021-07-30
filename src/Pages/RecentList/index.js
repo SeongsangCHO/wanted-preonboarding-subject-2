@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-<<<<<<< HEAD
-=======
 import Header from "../../Components/Header";
 import BrandFilter from "../../Components/ProductFilter/BrandFilter";
 import HideNoInterestingFilter from "../../Components/ProductFilter/HideNoInterestingFilter";
@@ -15,7 +13,6 @@ import {
   Button,
 } from "./style";
 import PropTypes from "prop-types";
->>>>>>> 7dd78c3050f91414cd867c838118eedc4105bf2a
 import Navbar from "../../Components/Navbar";
 
 class RecentListPage extends Component {

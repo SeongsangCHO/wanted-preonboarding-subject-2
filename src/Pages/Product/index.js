@@ -64,20 +64,16 @@ class ProductPage extends Component {
   componentWillUnmount() {}
 
   render() {
-<<<<<<< HEAD
     const { currentProduct } = this.state;
     console.log(currentProduct);
     return (
-      <div>
-        {currentProduct.title}
-        <button onClick={this.handleBtnClick}>돌려돌려!</button>
-      </div>
-=======
-    return (
       <Container>
         <Header></Header>
+        <div>
+          {currentProduct.title}
+          <button onClick={this.handleBtnClick}>돌려돌려!</button>
+        </div>
       </Container>
->>>>>>> 7dd78c3050f91414cd867c838118eedc4105bf2a
     );
   }
 }

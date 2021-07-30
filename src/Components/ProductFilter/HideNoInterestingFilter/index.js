@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Header from "../../Components/Header";
-import { Container } from "../../Components/Header/style";
+import { Container } from "./style";
 
-class ProductPage extends Component {
+class HideNoInterestingFilter extends Component {
   constructor(props) {
     super(props);
   }
@@ -14,10 +13,6 @@ class ProductPage extends Component {
 
   componentWillReceiveProps(nextProps) {}
 
-  shouldComponentUpdate(nextProps, nextState) {}
-
-  componentWillUpdate(nextProps, nextState) {}
-
   componentDidUpdate(prevProps, prevState) {}
 
   componentWillUnmount() {}
@@ -25,12 +20,13 @@ class ProductPage extends Component {
   render() {
     return (
       <Container>
-        <Header></Header>
+        <input type='checkbox'></input>
+        <span> 관심없는 상품 숨기기</span>
       </Container>
     );
   }
 }
 
-ProductPage.propTypes = {};
+HideNoInterestingFilter.propTypes = {};
 
-export default ProductPage;
+export default HideNoInterestingFilter;

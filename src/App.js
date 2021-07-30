@@ -9,6 +9,7 @@ import ProductPage from "./Pages/Product";
 import RecentListPage from "./Pages/RecentList";
 import { Container } from "./Styles/globalStyles";
 import GlobalStyle from "./Styles/globalStyles";
+import Header from "./Components/Header";
 
 class App extends React.Component {
   render() {

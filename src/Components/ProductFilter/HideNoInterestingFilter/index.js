@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Navbar from "../Navbar";
 import { Container } from "./style";
 
-class Header extends Component {
+class HideNoInterestingFilter extends Component {
   constructor(props) {
     super(props);
   }
@@ -21,12 +20,13 @@ class Header extends Component {
   render() {
     return (
       <Container>
-        <Navbar></Navbar>
+        <input type='checkbox'></input>
+        <span> 관심없는 상품 숨기기</span>
       </Container>
     );
   }
 }
 
-Header.propTypes = {};
+HideNoInterestingFilter.propTypes = {};
 
-export default Header;
+export default HideNoInterestingFilter;

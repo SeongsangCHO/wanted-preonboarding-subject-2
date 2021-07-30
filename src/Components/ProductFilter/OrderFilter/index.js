@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Navbar from "../Navbar";
-import { Container } from "./style";
 
-class Header extends Component {
+class OrderFilter extends Component {
   constructor(props) {
     super(props);
   }
@@ -19,14 +17,10 @@ class Header extends Component {
   componentWillUnmount() {}
 
   render() {
-    return (
-      <Container>
-        <Navbar></Navbar>
-      </Container>
-    );
+    return <button>최신순</button>;
   }
 }
 
-Header.propTypes = {};
+OrderFilter.propTypes = {};
 
-export default Header;
+export default OrderFilter;

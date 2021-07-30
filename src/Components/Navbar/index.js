@@ -6,9 +6,7 @@ import React, { Component } from "react";
 class Navbar extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      route: window.location.pathname,
-    };
+    this.state = {};
   }
 
   componentWillMount() {}
@@ -18,8 +16,6 @@ class Navbar extends Component {
   }
 
   componentWillReceiveProps(nextProps) {}
-
-  shouldComponentUpdate(nextProps, nextState) {}
 
   componentWillUpdate(nextProps, nextState) {}
 
@@ -33,7 +29,9 @@ class Navbar extends Component {
         <PageSelectorList>
           <PageSelector>
             <Link
-              className={this.state.route === "/product" ? "disable-link" : ""}
+              className={
+                window.location.pathname === "/product" ? "disable-link" : ""
+              }
               to='/product'
             >
               상품 상세
@@ -43,7 +41,7 @@ class Navbar extends Component {
             <Link
               to='/recentList'
               className={
-                this.state.route === "/recentList" ? "disable-link" : ""
+                window.location.pathname === "/recentList" ? "disable-link" : ""
               }
             >
               최근 이력

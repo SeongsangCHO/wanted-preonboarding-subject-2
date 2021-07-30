@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import Header from "../../Components/Header";
-import { Container } from "./style";
+import BrandFilter from "../../Components/ProductFilter/BrandFilter";
+import HideNoInterestingFilter from "../../Components/ProductFilter/HideNoInterestingFilter";
+import OrderFilter from "../../Components/ProductFilter/OrderFilter";
+import { Container, FilterOrderContainer } from "./style";
 
 class RecentListPage extends Component {
   constructor(props) {
@@ -20,7 +23,12 @@ class RecentListPage extends Component {
   render() {
     return (
       <Container>
-        <Header></Header>
+        <Header />
+        <FilterOrderContainer>
+          <HideNoInterestingFilter />
+          <OrderFilter />
+        </FilterOrderContainer>
+        <BrandFilter />
       </Container>
     );
   }

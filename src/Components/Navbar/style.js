@@ -14,6 +14,8 @@ export const PageSelector = styled.li`
   text-align: center;
   & > a {
     text-decoration: none;
+    width: 100%;
+    display: inline-block;
   }
   & > a.disable-link {
     pointer-events: none;

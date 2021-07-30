@@ -1,4 +1,21 @@
 import React, { Component } from "react";
+<<<<<<< HEAD
+=======
+import Header from "../../Components/Header";
+import BrandFilter from "../../Components/ProductFilter/BrandFilter";
+import HideNoInterestingFilter from "../../Components/ProductFilter/HideNoInterestingFilter";
+import OrderFilter from "../../Components/ProductFilter/OrderFilter";
+import {
+  Container,
+  FilterOrderContainer,
+  ListContainer,
+  ItemWrapper,
+  ItemTitle,
+  ItemInfo,
+  Button,
+} from "./style";
+import PropTypes from "prop-types";
+>>>>>>> 7dd78c3050f91414cd867c838118eedc4105bf2a
 import Navbar from "../../Components/Navbar";
 
 class RecentListPage extends Component {
@@ -12,22 +29,46 @@ class RecentListPage extends Component {
 
   componentWillReceiveProps(nextProps) {}
 
-  shouldComponentUpdate(nextProps, nextState) {}
-
-  componentWillUpdate(nextProps, nextState) {}
-
   componentDidUpdate(prevProps, prevState) {}
 
   componentWillUnmount() {}
 
   render() {
     return (
-      <div>
-        recentListPage
-        <Navbar></Navbar>
-        <div>관심상품</div>
-        <div>상품정보</div>
-      </div>
+      <Container>
+        <Header />
+        <FilterOrderContainer>
+          <HideNoInterestingFilter />
+          <OrderFilter />
+        </FilterOrderContainer>
+        <BrandFilter />
+        <ListContainer>
+          <ItemWrapper>
+            <ItemTitle>
+              <p>중고 나이키 테아 흰검 245 30000원</p>
+            </ItemTitle>
+            <ItemInfo>
+              <Button isHasInteresting={false}>
+                <img alt='*ㅅ*' />
+                <span>관심없음등록</span>
+              </Button>
+              <p>30,000원</p>
+            </ItemInfo>
+          </ItemWrapper>
+          <ItemWrapper>
+            <ItemTitle>
+              <p>중고 나이키 테아 흰검 245 30000원</p>
+            </ItemTitle>
+            <ItemInfo>
+              <Button isHasInteresting={false}>
+                <img alt='*ㅅ*' />
+                <span>관심없음등록</span>
+              </Button>
+              <p>30,000원</p>
+            </ItemInfo>
+          </ItemWrapper>
+        </ListContainer>
+      </Container>
     );
   }
 }

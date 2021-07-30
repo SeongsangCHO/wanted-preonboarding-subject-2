@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import Header from "../../Components/Header";
+import { Container } from "../../Components/Header/style";
 
 const BASE_URL = 'http://localhost:3000';
 
@@ -62,6 +64,7 @@ class ProductPage extends Component {
   componentWillUnmount() {}
 
   render() {
+<<<<<<< HEAD
     const { currentProduct } = this.state;
     console.log(currentProduct);
     return (
@@ -69,6 +72,12 @@ class ProductPage extends Component {
         {currentProduct.title}
         <button onClick={this.handleBtnClick}>돌려돌려!</button>
       </div>
+=======
+    return (
+      <Container>
+        <Header></Header>
+      </Container>
+>>>>>>> 7dd78c3050f91414cd867c838118eedc4105bf2a
     );
   }
 }

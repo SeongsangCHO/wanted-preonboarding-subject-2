@@ -5,30 +5,30 @@ import { BrandList, Container } from "./style";
 class BrandFilter extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      brands: this.props.brands,
-      showingBrandList: [],
-    };
+    // this.state = {
+    //   brands: this.props.brands,
+    //   showingBrandList: [],
+    // };
   }
 
-  onBrandFilterItemClick = (e) => {
-    const clickedBrand = e.target.dataset.kind;
-    if (this.state.showingBrandList.includes(clickedBrand)) {
-      this.setState({
-        showingBrandList: this.state.showingBrandList.filter(
-          (brand) => brand != clickedBrand
-        ),
-      });
-      return;
-    }
-    if (clickedBrand === undefined) {
-      return;
-    } else {
-      this.setState({
-        showingBrandList: [...this.state.showingBrandList, clickedBrand],
-      });
-    }
-  };
+  // onBrandFilterItemClick = (e) => {
+  //   const clickedBrand = e.target.dataset.kind;
+  //   if (this.state.showingBrandList.includes(clickedBrand)) {
+  //     this.setState({
+  //       showingBrandList: this.state.showingBrandList.filter(
+  //         (brand) => brand != clickedBrand
+  //       ),
+  //     });
+  //     return;
+  //   }
+  //   if (clickedBrand === undefined) {
+  //     return;
+  //   } else {
+  //     this.setState({
+  //       showingBrandList: [...this.state.showingBrandList, clickedBrand],
+  //     });
+  //   }
+  // };
   componentWillMount() {}
 
   componentDidMount() {}
@@ -40,12 +40,25 @@ class BrandFilter extends Component {
   componentWillUnmount() {}
 
   render() {
+    const { selectBrand, brand } = this.props;
     return (
       <Container>
-        <BrandList onClick={this.onBrandFilterItemClick}>
-          <li data-kind='ALL'>전체</li>
-          {this.state.brands.map((brand) => {
-            return <li data-kind={brand}>{brand}</li>;
+        {/* <BrandList onClick={this.onBrandFilterItemClick}/> */}
+        <BrandList>
+          <li data-kind='ALL' onClick={selectBrand}>
+            전체
+          </li>
+          {brand.map((brandTitle) => {
+            return (
+              <li
+                data-kind={brandTitle}
+                onClick={selectBrand}
+                value={brandTitle}
+                key={brandTitle}
+              >
+                {brandTitle}
+              </li>
+            );
           })}
         </BrandList>
       </Container>

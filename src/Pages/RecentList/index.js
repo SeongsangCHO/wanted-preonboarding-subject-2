@@ -3,17 +3,10 @@ import Header from "../../Components/Header";
 import BrandFilter from "../../Components/ProductFilter/BrandFilter";
 import HideNoInterestingFilter from "../../Components/ProductFilter/HideNoInterestingFilter";
 import OrderFilter from "../../Components/ProductFilter/OrderFilter";
-import {
-  Container,
-  FilterOrderContainer,
-  ListContainer,
-  ItemWrapper,
-  ItemTitle,
-  ItemInfo,
-  Button,
-} from "./style";
+import { Container, FilterOrderContainer, ListContainer } from "./style";
 import PropTypes from "prop-types";
 import Navbar from "../../Components/Navbar";
+import Card from "../../Components/Card";
 
 class RecentListPage extends Component {
   constructor(props) {
@@ -38,21 +31,19 @@ class RecentListPage extends Component {
   };
 
   selectBrand = (event) => {
-    const { selectedBrand, productData } = this.state;
+    const { selectedBrand } = this.state;
     const {
-      target: { value, checked },
+      target: {
+        dataset: { kind },
+      },
     } = event;
-    if (!checked && selectedBrand.includes(value))
+    if (kind === "ALL") return this.setState({ selectedBrand: [] });
+    if (selectedBrand.includes(kind))
       return this.setState({
-        selectedBrand: selectedBrand.filter((item) => item !== value),
+        selectedBrand: selectedBrand.filter((item) => item !== kind),
       });
     this.setState((state) => {
-      return { selectedBrand: state.selectedBrand.concat(value) };
-    });
-    this.setState({
-      selectedProductData: productData.filter((product) =>
-        selectedBrand.some((p) => [product.brand].includes(p))
-      ),
+      return { selectedBrand: state.selectedBrand.concat(kind) };
     });
   };
 
@@ -91,72 +82,24 @@ class RecentListPage extends Component {
   // componentWillUnmount() {}
 
   render() {
-    const { productData, brand, selectedBrand, selectedProductData } =
-      this.state;
+    const { brand, selectedProductData } = this.state;
     const { selectBrand } = this;
     return (
-      // productData &&
-      // brand &&
-      // selectedProductData && (
-      //   <div>
-      //     recentListPage
-      //     {/* <Navbar></Navbar> */}
-      //     <div>관심상품</div>
-      //     {/* {console.log(
-      //       productData.filter((product) =>
-      //         selectedBrand.some((p) => [product.brand].includes(p))
-      //       )
-      //     )} */}
-      //     {brand.map((brandName) => (
-      //       <div key={brandName}>
-      //         <input type='checkbox' value={brandName} onClick={selectBrand} />
-      //         <span>{brandName}</span>
-      //       </div>
-      //     ))}
-      //     <div>상품정보</div>
-      //     {selectedProductData.map((item) => (
-      //       <div key={item.title}>
-      //         <h3>{item.title}</h3>
-      //         <span>{item.brand}</span>
-      //         <span>{item.price}</span>
-      //       </div>
-      //     ))}
-      //   </div>
-      // )
-      <Container>
-        <Header />
-        <FilterOrderContainer>
-          <HideNoInterestingFilter />
-          <OrderFilter />
-        </FilterOrderContainer>
-        <BrandFilter />
-        <ListContainer>
-          <ItemWrapper>
-            <ItemTitle>
-              <p>중고 나이키 테아 흰검 245 30000원</p>
-            </ItemTitle>
-            <ItemInfo>
-              <Button isHasInteresting={false}>
-                <img alt='*ㅅ*' />
-                <span>관심없음등록</span>
-              </Button>
-              <p>30,000원</p>
-            </ItemInfo>
-          </ItemWrapper>
-          <ItemWrapper>
-            <ItemTitle>
-              <p>중고 나이키 테아 흰검 245 30000원</p>
-            </ItemTitle>
-            <ItemInfo>
-              <Button isHasInteresting={false}>
-                <img alt='*ㅅ*' />
-                <span>관심없음등록</span>
-              </Button>
-              <p>30,000원</p>
-            </ItemInfo>
-          </ItemWrapper>
-        </ListContainer>
-      </Container>
+      selectedProductData && (
+        <Container>
+          <Header />
+          <FilterOrderContainer>
+            <HideNoInterestingFilter />
+            <OrderFilter />
+          </FilterOrderContainer>
+          <BrandFilter brand={brand} selectBrand={selectBrand} />
+          <ListContainer>
+            {selectedProductData.map((prouduct) => (
+              <Card key={prouduct.title} data={prouduct} />
+            ))}
+          </ListContainer>
+        </Container>
+      )
     );
   }
 }

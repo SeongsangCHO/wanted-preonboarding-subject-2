@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Navbar from "../Navbar";
+import { Container } from "./style";
 
 class Header extends Component {
   constructor(props) {
@@ -13,20 +14,15 @@ class Header extends Component {
 
   componentWillReceiveProps(nextProps) {}
 
-  shouldComponentUpdate(nextProps, nextState) {}
-
-  componentWillUpdate(nextProps, nextState) {}
-
   componentDidUpdate(prevProps, prevState) {}
 
   componentWillUnmount() {}
 
   render() {
     return (
-      <header>
-        header
+      <Container>
         <Navbar></Navbar>
-      </header>
+      </Container>
     );
   }
 }

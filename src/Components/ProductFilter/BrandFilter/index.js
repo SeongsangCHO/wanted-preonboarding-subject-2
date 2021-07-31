@@ -45,7 +45,11 @@ class BrandFilter extends Component {
       <Container>
         {/* <BrandList onClick={this.onBrandFilterItemClick}/> */}
         <BrandList>
-          <BrnadItem data-kind='ALL' onClick={selectBrand}>
+          <BrnadItem
+            data-kind='ALL'
+            onClick={selectBrand}
+            isSelected={!selectedBrand.length}
+          >
             전체
           </BrnadItem>
           {brand.map((brandTitle) => {

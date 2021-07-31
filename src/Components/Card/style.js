@@ -1,5 +1,9 @@
 import styled, { css } from "styled-components";
 
+export const ItemContainer = styled.div`
+  position: relative;
+`;
+
 export const ItemWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -10,6 +14,7 @@ export const ItemWrapper = styled.div`
   margin-top: 10px;
   padding: 20px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
 `;
 
 export const ItemTitle = styled.div`
@@ -29,17 +34,20 @@ export const ItemInfo = styled.div`
   }
 
   p {
+    margin-top: 40px;
     font-size: 1.5rem;
     font-weight: 600;
   }
 `;
 
 export const Button = styled.button`
+  position: absolute;
+  top: 25px;
+  right: 20px;
   border: 0.5px solid black;
   color: black;
   border-radius: 20px;
   padding: 7px;
-  margin-bottom: 10px;
   background-color: #fff;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
   cursor: pointer;

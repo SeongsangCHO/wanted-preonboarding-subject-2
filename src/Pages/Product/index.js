@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Header from "../../Components/Header";
-import { Container } from "../../Components/Header/style";
+import { Container, ProductWrapper, ArrowRepeat, Button, EmptyMessageFlexBox, EmptyIcon, EmptyMessage, Brand, Title, Price } from "../Product/style";
 const BASE_URL = "http://localhost:3000";
 
 class ProductPage extends Component {
@@ -134,23 +134,26 @@ class ProductPage extends Component {
   }
 
   render() {
-    const { printableData, currentTitle } = this.state;
+    const { printableData, currentPrintData } = this.state;
+    const { price } = currentPrintData; 
     return (
       <Container>
         <Header></Header>
         {printableData.length === 0 ? (
-          <div>너가 다 관심없다 해따 가서 지워와~</div>
+          <ProductWrapper>
+            <EmptyMessageFlexBox>
+              <EmptyIcon />
+              <EmptyMessage>상품이 없어요우!</EmptyMessage>
+            </EmptyMessageFlexBox>
+          </ProductWrapper>
         ) : (
-          <div>
-            {currentTitle}
-            <button
-              disabled={printableData.length === 1 ? true : false}
-              onClick={() => this.randomPicker()}
-            >
-              돌려돌려!
-            </button>
-            <button onClick={() => this.noInteresting()}>관심없어</button>
-          </div>
+          <ProductWrapper>
+            <Brand>{currentPrintData.brand}</Brand>
+            <ArrowRepeat onClick={printableData.length !== 1 && this.randomPicker} />
+            <Button onClick={this.noInteresting}>관심없음 등록</Button>
+            <Title>{currentPrintData.title}</Title>
+            <Price>{`${Number(price).toLocaleString()}원`}</Price>
+          </ProductWrapper>
         )}
       </Container>
     );

@@ -131,7 +131,6 @@ class ProductPage extends Component {
       this.setLocalStorageData("printableLocalData", this.state.printableData);
     } else if (localData.length === 0) {
     } else {
-      console.log(localData);
       this.setState({
         printableData: [...localData],
       });
@@ -147,15 +146,22 @@ class ProductPage extends Component {
     }));
   }
 
+  componentDidUpdate() {
+    if (!this.state.printableData.length) {
+      this.props.history.push(`/recentList`);
+    }
+  }
+
   componentWillUnmount() {
     this.setLocalStorageData("printableLocalData", this.state.printableData);
   }
 
   render() {
-    const { printableData, currentTitle } = this.state;
+    const { printableData, currentTitle, currentPrintData } = this.state;
     return (
       <Container>
         <Header></Header>
+        {console.log(currentPrintData.id)}
         {printableData.length === 0 ? (
           <div>너가 다 관심없다 해따 가서 지워와~</div>
         ) : (

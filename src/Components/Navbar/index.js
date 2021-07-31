@@ -28,7 +28,7 @@ class Navbar extends Component {
           <PageSelector>
             <Link
               className={
-                window.location.pathname === "/product"
+                window.location.pathname.includes("/product")
                   ? "disable-link"
                   : "active-link"
               }

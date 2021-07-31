@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
   Route,
   Redirect,
@@ -40,7 +40,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <Router>
+      <Router basename='http://seongsangCHO.github.io/wanted-preonboarding-subject2'>
         <GlobalStyle />
         <Container>
           <Switch>

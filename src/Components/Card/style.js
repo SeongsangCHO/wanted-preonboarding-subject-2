@@ -2,6 +2,9 @@ import styled, { css } from "styled-components";
 
 export const ItemContainer = styled.div`
   position: relative;
+  &.hide {
+    display: none;
+  }
 `;
 
 export const ItemWrapper = styled.div`
@@ -28,11 +31,9 @@ export const ItemTitle = styled.div`
 
 export const ItemInfo = styled.div`
   text-align: right;
-
   span {
     font-size: 0.8rem;
   }
-
   p {
     margin-top: 40px;
     font-size: 1.5rem;
@@ -51,18 +52,15 @@ export const Button = styled.button`
   background-color: #fff;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
   cursor: pointer;
-
   &:hover {
     color: #fff;
     background-color: black;
   }
-
   ${({ isHasInteresting }) =>
     isHasInteresting &&
     css`
       border: 0.5px solid black;
       color: red;
-
       $:hover {
         border: 0.5px solid #1f29f0;
         color: #1f29f0;

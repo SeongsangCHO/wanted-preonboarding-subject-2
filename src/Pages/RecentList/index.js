@@ -19,6 +19,7 @@ class RecentListPage extends Component {
       productData: [],
       selectedProductData: [],
       value: "recentOrder",
+      isHideNoInteresting: false,
     };
   }
   recentOrderFilter = (data) => {
@@ -91,12 +92,7 @@ class RecentListPage extends Component {
     });
   };
 
-  // componentWillMount() {}
-
   componentDidMount() {
-    // fetch("/MockData/data.json")
-    //   .then((response) => response.json())
-    //   .then((data) => this.setState({ productData: data }));
     const recentLocalData = JSON.parse(localStorage.getItem("recentList"));
     if (recentLocalData === null) {
       this.setState({
@@ -108,12 +104,6 @@ class RecentListPage extends Component {
       });
     }
   }
-
-  // componentWillReceiveProps(nextProps) {}
-
-  // shouldComponentUpdate(nextProps, nextState) {}
-
-  // componentWillUpdate(nextProps, nextState) {}
 
   componentDidUpdate(prevProps, prevState) {
     const { productData, brand, selectedBrand, selectedProductData } =
@@ -145,17 +135,29 @@ class RecentListPage extends Component {
     }
   }
 
-  // componentWillUnmount() {}
+  hideNoInterestingFilter = () => {
+    this.setState({
+      isHideNoInteresting: !this.state.isHideNoInteresting,
+    });
+  };
 
   render() {
-    const { brand, selectedProductData, selectedBrand, value } = this.state;
-    const { selectBrand, goToProduct } = this;
+    const {
+      brand,
+      selectedProductData,
+      selectedBrand,
+      value,
+      isHideNoInteresting,
+    } = this.state;
+    const { hideNoInterestingFilter, selectBrand, goToProduct } = this;
     return (
       selectedProductData && (
         <Container>
           <Header />
           <FilterOrderContainer>
-            <HideNoInterestingFilter />
+            <HideNoInterestingFilter
+              hideNoInterestingFilter={hideNoInterestingFilter}
+            />
             <OrderFilter
               value={value}
               selectedOrderedKind={this.selectedOrderedKind}
@@ -169,6 +171,7 @@ class RecentListPage extends Component {
           <ListContainer>
             {selectedProductData.map((prouduct) => (
               <Card
+                hide={isHideNoInteresting}
                 key={prouduct.title}
                 data={prouduct}
                 goToProduct={goToProduct}

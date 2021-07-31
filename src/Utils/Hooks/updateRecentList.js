@@ -18,17 +18,20 @@ const updateRecentList = (obj) => {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-export const toggleInteresting = () => {
-  console.log("클릭클릭토글");
+export const toggleInteresting = async (obj, isInteresting) => {
   const recentLocal = localStorage.getItem("recentList");
   const data = JSON.parse(recentLocal);
   if (data) {
-    //제목이나 id필요
-    // localStorage.setItem("recentList", JSON.stringify(
-    //   ...data, data.filter((item) => ite)
-    // ));
-  } else {
-    console.log("nothing in toggleInteresting");
+    await localStorage.setItem(
+      "recentList",
+      JSON.stringify([
+        ...data.filter((item) => item.title !== obj.title),
+        {
+          ...obj,
+          isInteresting: isInteresting,
+        },
+      ])
+    );
   }
 };
 

@@ -2,11 +2,10 @@ import styled, { css } from "styled-components";
 
 export const ItemWrapper = styled.div`
   display: flex;
-  flex-direction: row;
-  border-radius: 10px;
   align-items: center;
-  justify-content: center;
-
+  justify-content: space-between;
+  width: 780px;
+  border-radius: 10px;
   border: 0.5px solid black;
   margin-top: 10px;
   padding: 20px;

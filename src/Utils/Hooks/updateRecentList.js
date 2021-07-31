@@ -30,16 +30,15 @@ const updateRecentList = (obj) => {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 {
-  /* <button id={index} onClick={this.changeDislike}>관심 없음 등록</button>
-
-const changeDislike = (event) => {
-  const {target: {id}} = event;
-  const {productData} = this.state;
-  const newDislike = productData.map((item,index) => {
-    return id !== index ? item : {...item, isInterest : !isInterest}
-  this.setState({productData : newDislike})
-  })
-} */
+  // <button id={index} onClick={this.changeDislike}>관심 없음 등록</button>
+  // const changeDislike = (event) => {
+  //   const {target: {id}} = event;
+  //   const {productData} = this.state;
+  //   const newDislike = productData.map((item,index) => {
+  //     return id !== index ? item : {...item, isInterest : !isInterest}
+  //   this.setState({productData : newDislike})
+  //   })
+  // }
 }
 
 export default updateRecentList;

@@ -62,13 +62,8 @@ class RecentListPage extends Component {
   // componentWillUpdate(nextProps, nextState) {}
 
   componentDidUpdate(prevProps, prevState) {
-    const {
-      productData,
-      brand,
-      selectedBrand,
-      selectedProductData,
-      isSelected,
-    } = this.state;
+    const { productData, brand, selectedBrand, selectedProductData } =
+      this.state;
     if (productData.length && !brand.length) {
       this.makeBrnadData();
     }

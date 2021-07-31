@@ -2,10 +2,6 @@ import React, { Component } from "react";
 import { ModalWrapper, ModalContainer } from "./style";
 
 class OrderFilterModal extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount = () => {
     window.addEventListener("mousedown", this.handleClickOutSide);
   };

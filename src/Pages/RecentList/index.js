@@ -1,4 +1,3 @@
-  
 import React, { Component } from "react";
 import Header from "../../Components/Header";
 import BrandFilter from "../../Components/ProductFilter/BrandFilter";
@@ -47,7 +46,7 @@ class RecentListPage extends Component {
 
   openModal = () => {
     this.setState({ open: true });
-    const closeTimer = setTimeout(() => {
+    setTimeout(() => {
       this.closeModal();
     }, 2000);
   };
@@ -58,10 +57,10 @@ class RecentListPage extends Component {
 
   goToProduct = (isInteresting) => {
     if (isInteresting) {
-      this.props.history.push("/product")
-    }else{
+      this.props.history.push("/product");
+    } else {
       this.openModal();
-    };    
+    }
   };
 
   makeBrnadData = () => {

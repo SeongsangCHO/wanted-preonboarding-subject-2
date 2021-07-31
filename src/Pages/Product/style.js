@@ -1,6 +1,6 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { BsArrowRepeat } from "react-icons/bs";
-import {FaGrimace} from "react-icons/fa";
+import { FaGrimace } from "react-icons/fa";
 
 export const Container = styled.div`
   width: 100%;
@@ -10,7 +10,7 @@ export const Container = styled.div`
 export const ProductWrapper = styled.div`
   position: relative;
   width: 100%;
-  height: 550px;  
+  height: 550px;
   margin-top: 15px;
   border-radius: 10px;
   border: 0.5px solid black;

@@ -9,8 +9,6 @@ import ProductPage from "./Pages/Product";
 import RecentListPage from "./Pages/RecentList";
 import { Container } from "./Styles/globalStyles";
 import GlobalStyle from "./Styles/globalStyles";
-import Header from "./Components/Header";
-import { logDOM } from "@testing-library/react";
 
 let interval;
 

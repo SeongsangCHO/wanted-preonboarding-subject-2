@@ -23,17 +23,17 @@ class Card extends React.Component {
       () => toggleInteresting(this.props.data, this.state.hasInteresting)
     );
   };
-  isOpenCautionMessage=(isInteresting)=>{
+  isOpenCautionMessage = (isInteresting) => {
     this.props.goToProduct(isInteresting);
   };
 
   render() {
     const { hasInteresting } = this.state;
     const { title, price, isInteresting } = this.props.data;
-    const { goToProduct, hide } = this.props;
+    const { hide } = this.props;
     return (
       <ItemContainer id='ct' className={hide && !hasInteresting ? "hide" : ""}>
-        <ItemWrapper onClick={()=>this.isOpenCautionMessage(isInteresting)}>
+        <ItemWrapper onClick={() => this.isOpenCautionMessage(isInteresting)}>
           <ItemTitle>
             <p>{title}</p>
           </ItemTitle>

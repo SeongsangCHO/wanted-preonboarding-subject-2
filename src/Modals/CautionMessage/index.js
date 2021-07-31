@@ -2,9 +2,6 @@ import React, { Component } from "react";
 import { ModalWrapper } from "./style";
 
 class CautionMessage extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     const { open } = this.props;
     return (

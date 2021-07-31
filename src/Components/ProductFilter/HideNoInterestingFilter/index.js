@@ -2,9 +2,6 @@ import React, { Component } from "react";
 import { Container } from "./style";
 
 class HideNoInterestingFilter extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     const { hideNoInterestingFilter } = this.props;
     return (

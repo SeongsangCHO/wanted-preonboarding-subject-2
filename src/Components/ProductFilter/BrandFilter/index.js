@@ -2,10 +2,6 @@ import React, { Component } from "react";
 import { BrandList, BrnadItem, Container } from "./style";
 
 class BrandFilter extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const { selectBrand, brand, selectedBrand } = this.props;
     return (

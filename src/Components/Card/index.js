@@ -23,6 +23,9 @@ class Card extends React.Component {
       () => toggleInteresting(this.props.data, this.state.hasInteresting)
     );
   };
+  isOpenCautionMessage=(isInteresting)=>{
+    this.props.goToProduct(isInteresting);
+  };
 
   render() {
     const { hasInteresting } = this.state;
@@ -30,7 +33,7 @@ class Card extends React.Component {
     const { goToProduct, hide } = this.props;
     return (
       <ItemContainer id='ct' className={hide && !hasInteresting ? "hide" : ""}>
-        <ItemWrapper onClick={goToProduct}>
+        <ItemWrapper onClick={()=>this.isOpenCautionMessage(isInteresting)}>
           <ItemTitle>
             <p>{title}</p>
           </ItemTitle>
@@ -38,7 +41,7 @@ class Card extends React.Component {
             <p>{`${price.toLocaleString()}원`}</p>
           </ItemInfo>
         </ItemWrapper>
-        <Button isInteresting={false} onClick={this.handleClick}>
+        <Button isInteresting={isInteresting} onClick={this.handleClick}>
           {hasInteresting ? (
             <span>관심있는 상태</span>
           ) : (

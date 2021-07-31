@@ -56,8 +56,12 @@ class RecentListPage extends Component {
     this.setState({ open: false });
   };
 
-  goToProduct = () => {
-    this.props.history.push("/product");
+  goToProduct = (isInteresting) => {
+    if (isInteresting) {
+      this.props.history.push("/product")
+    }else{
+      this.openModal();
+    };    
   };
 
   makeBrnadData = () => {

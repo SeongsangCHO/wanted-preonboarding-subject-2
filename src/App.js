@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  HashRouter as Router,
+  BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
@@ -26,7 +26,7 @@ class App extends React.Component {
   }
 
   checkTheTime = () => {
-    const midnight = "16:43:20";
+    const midnight = "00:00:00";
     const date = new Date();
     const hours = date.getHours();
     const minutes = date.getMinutes();
@@ -40,7 +40,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <Router basename='http://seongsangCHO.github.io/wanted-preonboarding-subject2'>
+      <Router>
         <GlobalStyle />
         <Container>
           <Switch>

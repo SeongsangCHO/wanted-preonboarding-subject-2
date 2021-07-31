@@ -16,6 +16,22 @@ export const PageSelector = styled.li`
     text-decoration: none;
     width: 100%;
     display: inline-block;
+    font-size: 25px;
+    &:link {
+      color: #000;
+    }
+
+    &:visited {
+      color: #000;
+    }
+
+    &:hover {
+      color: #cc0000;
+    }
+
+    &:active {
+      color: #ff0000;
+    }
   }
   & > a.disable-link {
     pointer-events: none;

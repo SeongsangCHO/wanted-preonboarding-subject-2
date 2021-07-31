@@ -113,7 +113,6 @@ class ProductPage extends Component {
     if (localStorage.getItem("printableLocalData") === null) {
       const fetchApiData = await fetch(`${BASE_URL}/MockData/data.json`);
       const apiData = await fetchApiData.json();
-      console.log(localData, "lcocoocco");
 
       this.setState({
         printableData: [
@@ -123,7 +122,6 @@ class ProductPage extends Component {
       this.setLocalStorageData("printableLocalData", this.state.printableData);
     } else if (localData.length === 0) {
     } else {
-      console.log(localData);
       this.setState({
         printableData: [...localData],
       });

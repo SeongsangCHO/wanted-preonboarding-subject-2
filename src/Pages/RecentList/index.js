@@ -33,9 +33,13 @@ class RecentListPage extends Component {
 
   orderedFiltered = (data) => {
     let sortedData = [];
+    console.log(this.state.value, "정렬 기준");
+
     if (this.state.value === "recentOrder" && data !== null) {
       sortedData = this.recentOrderFilter(data);
     } else {
+      console.log(this.state.value, "row데이터 정렬", data, this.state);
+
       sortedData = this.lowPriceOrderFilter(data);
     }
     this.setState({
@@ -116,7 +120,9 @@ class RecentListPage extends Component {
       !selectedProductData.length &&
       !selectedBrand.length
     ) {
-      this.setState({ selectedProductData: [...productData] });
+      this.setState({
+        selectedProductData: [...this.orderedFiltered(productData)],
+      });
     }
     if (prevState.selectedBrand.length !== selectedBrand?.length) {
       this.setState(
@@ -129,8 +135,15 @@ class RecentListPage extends Component {
       );
     }
     if (productData.length > 0 && brand.length === selectedBrand.length) {
-      this.setState({ selectedBrand: [] }, () =>
-        this.orderedFiltered(this.state.productData)
+      console.log("전체셀렡그브랜드", this.state.selectedBrand);
+      this.setState(
+        {
+          selectedBrand: [],
+          selectedProductData: [
+            ...this.orderedFiltered(this.state.productData),
+          ],
+        },
+        () => this.orderedFiltered(this.state.productData)
       );
     }
   }

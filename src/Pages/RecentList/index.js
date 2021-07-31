@@ -16,6 +16,7 @@ class RecentListPage extends Component {
       selectedBrand: [],
       productData: [],
       selectedProductData: [],
+      isSelected: [],
     };
   }
 
@@ -62,8 +63,13 @@ class RecentListPage extends Component {
   // componentWillUpdate(nextProps, nextState) {}
 
   componentDidUpdate(prevProps, prevState) {
-    const { productData, brand, selectedBrand, selectedProductData } =
-      this.state;
+    const {
+      productData,
+      brand,
+      selectedBrand,
+      selectedProductData,
+      isSelected,
+    } = this.state;
     if (productData.length && !brand.length) {
       this.makeBrnadData();
     }
@@ -77,12 +83,15 @@ class RecentListPage extends Component {
         ),
       });
     }
+    if (!isSelected.length) {
+      this.setState({ isSelected: Array(brand.length).fill(false) });
+    }
   }
 
   // componentWillUnmount() {}
 
   render() {
-    const { brand, selectedProductData } = this.state;
+    const { brand, selectedProductData, isSelected } = this.state;
     const { selectBrand } = this;
     return (
       selectedProductData && (

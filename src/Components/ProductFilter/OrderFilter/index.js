@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import OrderFilterModal from "../../../Modals/OrderFilterModal";
 import { OrderFilterButton } from "./style";
 
-class OrderFilter extends React.Component {
+class OrderFilter extends Component {
   constructor(props) {
     super(props);
 

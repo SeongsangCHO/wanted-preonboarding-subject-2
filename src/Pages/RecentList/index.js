@@ -1,17 +1,16 @@
+  
 import React, { Component } from "react";
 import Header from "../../Components/Header";
 import BrandFilter from "../../Components/ProductFilter/BrandFilter";
 import HideNoInterestingFilter from "../../Components/ProductFilter/HideNoInterestingFilter";
 import OrderFilter from "../../Components/ProductFilter/OrderFilter";
 import { Container, FilterOrderContainer, ListContainer } from "./style";
-import PropTypes from "prop-types";
-import Navbar from "../../Components/Navbar";
 import CautionMessage from "../../Modals/CautionMessage";
 import Card from "../../Components/Card";
 import {
-  getLocalStorageData,
-  setLocalStorageData,
-} from "../../Utils/Hooks/localStorageUtil";
+  recentOrderFilter,
+  lowPriceOrderFilter,
+} from "../../Utils/Hooks/Filter";
 
 class RecentListPage extends Component {
   constructor(props) {
@@ -22,25 +21,18 @@ class RecentListPage extends Component {
       selectedBrand: [],
       productData: [],
       selectedProductData: [],
-      printableData: [],
       value: "recentOrder",
+      isHideNoInteresting: false,
     };
   }
-  recentOrderFilter = (data) => {
-    const sortedData = data.sort((a, b) => b.time - a.time);
-    return sortedData;
-  };
-  lowPriceOrderFilter = (data) => {
-    const sortedData = data.sort((a, b) => a.price - b.price);
-    return sortedData;
-  };
 
   orderedFiltered = (data) => {
     let sortedData = [];
+
     if (this.state.value === "recentOrder" && data !== null) {
-      sortedData = this.recentOrderFilter(data);
+      sortedData = recentOrderFilter(data);
     } else {
-      sortedData = this.lowPriceOrderFilter(data);
+      sortedData = lowPriceOrderFilter(data);
     }
     this.setState({
       selectProductData: [...sortedData],
@@ -64,8 +56,8 @@ class RecentListPage extends Component {
     this.setState({ open: false });
   };
 
-  goToProduct = (id) => {
-    this.props.history.push(`/product/${id}`);
+  goToProduct = () => {
+    this.props.history.push("/product");
   };
 
   makeBrnadData = () => {
@@ -96,33 +88,7 @@ class RecentListPage extends Component {
     });
   };
 
-  // componentWillMount() {}
-
-  async componentDidMount() {
-    // fetch("/MockData/data.json")
-    //   .then((response) => response.json())
-    //   .then((data) => this.setState({ productData: data }));
-    const localData = await getLocalStorageData("printableLocalData");
-    if (localStorage.getItem("printableLocalData") === null) {
-      const fetchApiData = await fetch(`/MockData/data.json`);
-      const apiData = await fetchApiData.json();
-      this.setState({
-        printableData: [
-          ...apiData.map((data, index) => ({
-            ...data,
-            isInteresting: true,
-            id: index + 1,
-          })),
-        ],
-      });
-      setLocalStorageData("printableLocalData", this.state.printableData);
-    } else if (localData.length === 0) {
-    } else {
-      this.setState({
-        printableData: [...localData],
-      });
-    }
-
+  componentDidMount() {
     const recentLocalData = JSON.parse(localStorage.getItem("recentList"));
     if (recentLocalData === null) {
       this.setState({
@@ -130,16 +96,10 @@ class RecentListPage extends Component {
       });
     } else {
       this.setState({
-        productData: [...this.recentOrderFilter(recentLocalData)],
+        productData: [...recentOrderFilter(recentLocalData)],
       });
     }
   }
-
-  // componentWillReceiveProps(nextProps) {}
-
-  // shouldComponentUpdate(nextProps, nextState) {}
-
-  // componentWillUpdate(nextProps, nextState) {}
 
   componentDidUpdate(prevProps, prevState) {
     const { productData, brand, selectedBrand, selectedProductData } =
@@ -152,7 +112,9 @@ class RecentListPage extends Component {
       !selectedProductData.length &&
       !selectedBrand.length
     ) {
-      this.setState({ selectedProductData: [...productData] });
+      this.setState({
+        selectedProductData: [...this.orderedFiltered(productData)],
+      });
     }
     if (prevState.selectedBrand.length !== selectedBrand?.length) {
       this.setState(
@@ -165,25 +127,41 @@ class RecentListPage extends Component {
       );
     }
     if (productData.length > 0 && brand.length === selectedBrand.length) {
-      this.setState({ selectedBrand: [] }, () =>
-        this.orderedFiltered(this.state.productData)
+      this.setState(
+        {
+          selectedBrand: [],
+          selectedProductData: [
+            ...this.orderedFiltered(this.state.productData),
+          ],
+        },
+        () => this.orderedFiltered(this.state.productData)
       );
     }
   }
 
-  // componentWillUnmount() {}
+  hideNoInterestingFilter = () => {
+    this.setState({
+      isHideNoInteresting: !this.state.isHideNoInteresting,
+    });
+  };
 
   render() {
-    const { brand, selectedProductData, selectedBrand, value, printableData } =
-      this.state;
-    const dataLength = printableData.length;
-    const { selectBrand, goToProduct } = this;
+    const {
+      brand,
+      selectedProductData,
+      selectedBrand,
+      value,
+      isHideNoInteresting,
+    } = this.state;
+    const { hideNoInterestingFilter, selectBrand, goToProduct } = this;
     return (
       selectedProductData && (
         <Container>
-          <Header number={dataLength} />
+          <Header />
           <FilterOrderContainer>
-            <HideNoInterestingFilter />
+            <HideNoInterestingFilter
+              hideNoInterestingFilter={hideNoInterestingFilter}
+            />
             <OrderFilter
               value={value}
               selectedOrderedKind={this.selectedOrderedKind}
@@ -195,11 +173,11 @@ class RecentListPage extends Component {
             selectedBrand={selectedBrand}
           />
           <ListContainer>
-            {selectedProductData.map((product) => (
+            {selectedProductData.map((prouduct) => (
               <Card
-                id={product.id}
-                key={product.title}
-                data={product}
+                hide={isHideNoInteresting}
+                key={prouduct.title}
+                data={prouduct}
                 goToProduct={goToProduct}
               />
             ))}
@@ -210,7 +188,5 @@ class RecentListPage extends Component {
     );
   }
 }
-
-RecentListPage.propTypes = {};
 
 export default RecentListPage;

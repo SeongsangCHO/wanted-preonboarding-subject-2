@@ -18,17 +18,41 @@ const updateRecentList = (obj) => {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-export const toggleInteresting = () => {
-  console.log("클릭클릭토글");
+export const toggleInteresting = async (obj, isInteresting) => {
   const recentLocal = localStorage.getItem("recentList");
   const data = JSON.parse(recentLocal);
+  const printableLocal = localStorage.getItem("printableLocalData");
+  const printData = JSON.parse(printableLocal);
+
   if (data) {
-    //제목이나 id필요
-    // localStorage.setItem("recentList", JSON.stringify(
-    //   ...data, data.filter((item) => ite)
-    // ));
+    await localStorage.setItem(
+      "recentList",
+      JSON.stringify([
+        ...data.filter((item) => item.title !== obj.title),
+        {
+          ...obj,
+          isInteresting: isInteresting,
+        },
+      ])
+    );
+  }
+  if (isInteresting === false) {
+    localStorage.setItem(
+      "printableLocalData",
+      JSON.stringify(
+        ///false인것빼고
+        [...printData.filter((item) => item.title !== obj.title)]
+      )
+    );
   } else {
-    console.log("nothing in toggleInteresting");
+    //true일 때, printable에 추가한다.
+    localStorage.setItem(
+      "printableLocalData",
+      JSON.stringify([
+        ...printData,
+        ...data.filter((item) => item.title === obj.title),
+      ])
+    );
   }
 };
 

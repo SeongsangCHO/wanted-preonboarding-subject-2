@@ -20,7 +20,7 @@ class HideNoInterestingFilter extends Component {
   render() {
     return (
       <Container>
-        <input type='checkbox'></input>
+        <input type='checkbox' />
         <span> 관심없는 상품 숨기기</span>
       </Container>
     );

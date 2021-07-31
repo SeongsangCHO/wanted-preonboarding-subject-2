@@ -40,7 +40,8 @@ $ npm start
 
 </br>
 
-## 📌 기능 영상
+## 📌[배포링크](https://angry-snyder-5ea86b.netlify.app/)
+## 📌 기능 영상
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/55486644/127740694-5b4217c8-e903-4b5d-ae49-90387eda331f.gif)
 
 </br>

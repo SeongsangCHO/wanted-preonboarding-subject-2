@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Header from "../../Components/Header";
 import { Container } from "../../Components/Header/style";
-const BASE_URL = "http://localhost:3001";
+// const BASE_URL = "http://localhost:3001";
 
 class ProductPage extends Component {
   constructor(props) {
@@ -85,6 +85,7 @@ class ProductPage extends Component {
         () => this.setRecentListNoInterestingData(true)
       );
     }
+    this.props.history.push(`/product/${randomIndex + 1}`);
   };
 
   getLocalStorageData = (dataName) => {
@@ -99,11 +100,15 @@ class ProductPage extends Component {
     localStorage.setItem(itemName, JSON.stringify(data));
   };
   getApiData = async () => {
-    const fetchApiData = await fetch(`${BASE_URL}/MockData/data.json`);
+    const fetchApiData = await fetch(`/MockData/data.json`);
     const apiData = await fetchApiData.json();
     this.setState({
       printableData: [
-        ...apiData.map((data) => ({ ...data, isInteresting: true })),
+        ...apiData.map((data, index) => ({
+          ...data,
+          isInteresting: true,
+          id: index + 1,
+        })),
       ],
     });
     this.randomPicker();
@@ -111,13 +116,16 @@ class ProductPage extends Component {
   async componentDidMount() {
     const localData = await this.getLocalStorageData("printableLocalData");
     if (localStorage.getItem("printableLocalData") === null) {
-      const fetchApiData = await fetch(`${BASE_URL}/MockData/data.json`);
+      const fetchApiData = await fetch(`/MockData/data.json`);
       const apiData = await fetchApiData.json();
-      console.log(localData, "lcocoocco");
 
       this.setState({
         printableData: [
-          ...apiData.map((data) => ({ ...data, isInteresting: true })),
+          ...apiData.map((data, index) => ({
+            ...data,
+            isInteresting: true,
+            id: index + 1,
+          })),
         ],
       });
       this.setLocalStorageData("printableLocalData", this.state.printableData);
@@ -128,7 +136,15 @@ class ProductPage extends Component {
         printableData: [...localData],
       });
     }
-    this.randomPicker();
+    const targetId = parseInt(this.props.match.params.id) - 1;
+    if (targetId < 0 || targetId > this.state.printableData.length) {
+      alert("상품이 없습니다");
+      return this.randomPicker();
+    }
+    this.setState((prev) => ({
+      currentPrintData: prev.printableData[targetId],
+      currentTitle: prev.printableData[targetId].title,
+    }));
   }
 
   componentWillUnmount() {

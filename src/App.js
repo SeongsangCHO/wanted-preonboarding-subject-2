@@ -21,7 +21,7 @@ class App extends React.Component {
             <Route exact path='/'>
               <Redirect to='/recentList'></Redirect>
             </Route>
-            <Route path='/product' component={ProductPage} />
+            <Route path='/product/:id' component={ProductPage} />
             <Route path='/recentList' component={RecentListPage} />
           </Switch>
         </Container>

@@ -6,35 +6,34 @@ import OrderFilter from "../../Components/ProductFilter/OrderFilter";
 import { Container, FilterOrderContainer, ListContainer } from "./style";
 import PropTypes from "prop-types";
 import Navbar from "../../Components/Navbar";
-import CautionMessage from "../../Modals/CautionMessage"
+import CautionMessage from "../../Modals/CautionMessage";
 import Card from "../../Components/Card";
 
 class RecentListPage extends Component {
   constructor(props) {
     super(props);
-    this.state={
-      open:false,
+    this.state = {
+      open: false,
       brand: [],
       selectedBrand: [],
       productData: [],
       selectedProductData: [],
-    }
+    };
   }
-
 
   openModal = () => {
-    this.setState({open:true});
-    const closeTimer = setTimeout(()=>{
+    this.setState({ open: true });
+    const closeTimer = setTimeout(() => {
       this.closeModal();
-    },2000);
-  }
+    }, 2000);
+  };
 
   closeModal = () => {
-    this.setState({open:false});
-  }
+    this.setState({ open: false });
+  };
 
-  goToProduct = () => {
-    this.props.history.push("/product");
+  goToProduct = (id) => {
+    this.props.history.push(`/product/${id}`);
   };
 
   makeBrnadData = () => {
@@ -133,10 +132,11 @@ class RecentListPage extends Component {
             selectedBrand={selectedBrand}
           />
           <ListContainer>
-            {selectedProductData.map((prouduct) => (
+            {selectedProductData.map((product) => (
               <Card
-                key={prouduct.title}
-                data={prouduct}
+                id={product.id}
+                key={product.title}
+                data={product}
                 goToProduct={goToProduct}
               />
             ))}

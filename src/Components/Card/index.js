@@ -15,11 +15,11 @@ class Card extends React.Component {
   handleClick = () => {};
 
   render() {
-    const { title, price, isInteresting } = this.props.data;
+    const { title, price, isInteresting, id } = this.props.data;
     const { goToProduct } = this.props;
     return (
       <ItemContainer>
-        <ItemWrapper onClick={goToProduct}>
+        <ItemWrapper onClick={() => goToProduct(id)}>
           <ItemTitle>
             <p>{title}</p>
           </ItemTitle>

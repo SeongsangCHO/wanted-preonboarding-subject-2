@@ -2,7 +2,6 @@ import React, { Component} from "react";
 import PropTypes from "prop-types";
 import OrderFilterModal from "../../../Modals/OrderFilterModal"
 import {OrderFilterButton} from "./style"
-
 class OrderFilter extends React.Component {
   constructor(props) {
     super(props);
@@ -30,7 +29,7 @@ class OrderFilter extends React.Component {
   render() {
     return (
       <>
-        <OrderFilterButton onClick={this.openModal}>{this.state.value}</OrderFilterButton>
+        <OrderFilterButton onClick={this.openModal}>⥯ {this.state.value}</OrderFilterButton>
         {this.state.open && <OrderFilterModal selectValue={this.selectValue} close={this.closeModal}/> }
       </>
     )

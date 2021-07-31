@@ -32,9 +32,9 @@ class Card extends React.Component {
         </ItemWrapper>
         <Button isHasInteresting={isInteresting} onClick={this.handleClick}>
           {isInteresting ? (
-            <span>관심없음 등록</span>
+            <span>😒관심없음 등록</span>
           ) : (
-            <span>관심없는 상태 *ㅅ*</span>
+            <span>😒관심없는 상품</span>
           )}
         </Button>
       </ItemContainer>

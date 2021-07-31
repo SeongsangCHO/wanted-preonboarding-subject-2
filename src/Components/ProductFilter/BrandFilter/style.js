@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  padding: 15px 0 0 15px;
+  padding: 15px;
 `;
 
 export const BrandList = styled.ul`

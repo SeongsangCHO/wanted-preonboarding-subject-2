@@ -4,10 +4,12 @@ import BrandFilter from "../../Components/ProductFilter/BrandFilter";
 import HideNoInterestingFilter from "../../Components/ProductFilter/HideNoInterestingFilter";
 import OrderFilter from "../../Components/ProductFilter/OrderFilter";
 import { Container, FilterOrderContainer, ListContainer } from "./style";
-import PropTypes from "prop-types";
-import Navbar from "../../Components/Navbar";
 import CautionMessage from "../../Modals/CautionMessage";
 import Card from "../../Components/Card";
+import {
+  recentOrderFilter,
+  lowPriceOrderFilter,
+} from "../../Utils/Hooks/Filter";
 
 class RecentListPage extends Component {
   constructor(props) {
@@ -22,22 +24,14 @@ class RecentListPage extends Component {
       isHideNoInteresting: false,
     };
   }
-  recentOrderFilter = (data) => {
-    const sortedData = data.sort((a, b) => b.time - a.time);
-    return sortedData;
-  };
-  lowPriceOrderFilter = (data) => {
-    const sortedData = data.sort((a, b) => a.price - b.price);
-    return sortedData;
-  };
 
   orderedFiltered = (data) => {
     let sortedData = [];
 
     if (this.state.value === "recentOrder" && data !== null) {
-      sortedData = this.recentOrderFilter(data);
+      sortedData = recentOrderFilter(data);
     } else {
-      sortedData = this.lowPriceOrderFilter(data);
+      sortedData = lowPriceOrderFilter(data);
     }
     this.setState({
       selectProductData: [...sortedData],
@@ -101,7 +95,7 @@ class RecentListPage extends Component {
       });
     } else {
       this.setState({
-        productData: [...this.recentOrderFilter(recentLocalData)],
+        productData: [...recentOrderFilter(recentLocalData)],
       });
     }
   }
@@ -193,7 +187,5 @@ class RecentListPage extends Component {
     );
   }
 }
-
-RecentListPage.propTypes = {};
 
 export default RecentListPage;

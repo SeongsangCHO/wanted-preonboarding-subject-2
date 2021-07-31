@@ -68,3 +68,6 @@ __`김민기`__
 - Brand 메뉴 필터링 구현
 - 각각 상품에 대한 마크업 스타일링 적용
 - 데이터 패칭에 관한 로직 구현
+
+
+#### 📌[협업사항 정리](https://lead-dryosaurus-516.notion.site/2-bb3c12afb92548aab1ed61d1fcfb1fc1)

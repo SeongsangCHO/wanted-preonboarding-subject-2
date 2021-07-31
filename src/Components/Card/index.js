@@ -14,12 +14,15 @@ class Card extends React.Component {
 
   handleClick = () => {};
 
+  isOpenCautionMessage=(isInteresting)=>{
+    this.props.goToProduct(isInteresting);
+  };
+
   render() {
-    const { title, price, isInteresting } = this.props.data;
-    const { goToProduct } = this.props;
+    const { title, price, isInteresting } = this.props.data;    
     return (
       <ItemContainer>
-        <ItemWrapper onClick={goToProduct}>
+        <ItemWrapper onClick={()=>this.isOpenCautionMessage(isInteresting)}>
           <ItemTitle>
             <p>{title}</p>
           </ItemTitle>
@@ -27,7 +30,7 @@ class Card extends React.Component {
             <p>{`${price.toLocaleString()}원`}</p>
           </ItemInfo>
         </ItemWrapper>
-        <Button isHasInteresting={false} onClick={this.handleClick}>
+        <Button isHasInteresting={isInteresting} onClick={this.handleClick}>
           {isInteresting ? (
             <span>관심없음 등록</span>
           ) : (

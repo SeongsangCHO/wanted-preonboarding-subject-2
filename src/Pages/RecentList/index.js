@@ -33,8 +33,12 @@ class RecentListPage extends Component {
     this.setState({open:false});
   }
 
-  goToProduct = () => {
-    this.props.history.push("/product");
+  goToProduct = (isInteresting) => {
+    if (isInteresting) {
+      this.props.history.push("/product")
+    }else{
+      this.openModal();
+    };    
   };
 
   makeBrnadData = () => {
@@ -138,7 +142,7 @@ class RecentListPage extends Component {
                 key={prouduct.title}
                 data={prouduct}
                 goToProduct={goToProduct}
-              />
+                />
             ))}
           </ListContainer>
           <CautionMessage open={this.state.open}></CautionMessage>

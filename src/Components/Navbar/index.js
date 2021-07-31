@@ -1,7 +1,8 @@
 import PropTypes from "prop-types";
 import { PageSelectorList, PageSelector } from "./style";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import React, { Component } from "react";
+import { randomNumber } from "../../Utils/Hooks/randomNumber";
 
 class Navbar extends Component {
   constructor(props) {
@@ -22,35 +23,38 @@ class Navbar extends Component {
   componentWillUnmount() {}
 
   render() {
+    const { number } = this.props;
     return (
-      <nav>
-        <PageSelectorList>
-          <PageSelector>
-            <Link
-              className={
-                window.location.pathname === "/product"
-                  ? "disable-link"
-                  : "active-link"
-              }
-              to='/product'
-            >
-              상품 상세
-            </Link>
-          </PageSelector>
-          <PageSelector>
-            <Link
-              to='/recentList'
-              className={
-                window.location.pathname === "/recentList"
-                  ? "disable-link"
-                  : "active-link"
-              }
-            >
-              최근 이력
-            </Link>
-          </PageSelector>
-        </PageSelectorList>
-      </nav>
+      number && (
+        <nav>
+          <PageSelectorList>
+            <PageSelector>
+              <Link
+                className={
+                  window.location.pathname.includes("/product")
+                    ? "disable-link"
+                    : "active-link"
+                }
+                to={`/product/${randomNumber(number)}`}
+              >
+                상품 상세
+              </Link>
+            </PageSelector>
+            <PageSelector>
+              <Link
+                to='/recentList'
+                className={
+                  window.location.pathname === "/recentList"
+                    ? "disable-link"
+                    : "active-link"
+                }
+              >
+                최근 이력
+              </Link>
+            </PageSelector>
+          </PageSelectorList>
+        </nav>
+      )
     );
   }
 }

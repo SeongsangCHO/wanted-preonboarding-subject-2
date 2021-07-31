@@ -59,8 +59,8 @@ class RecentListPage extends Component {
     this.setState({ open: false });
   };
 
-  goToProduct = () => {
-    this.props.history.push("/product");
+  goToProduct = (id) => {
+    this.props.history.push(`/product/${id}`);
   };
 
   makeBrnadData = () => {
@@ -149,11 +149,14 @@ class RecentListPage extends Component {
 
   render() {
     const { brand, selectedProductData, selectedBrand, value } = this.state;
+    const dataLength = JSON.parse(
+      localStorage.getItem("printableLocalData")
+    ).length;
     const { selectBrand, goToProduct } = this;
     return (
       selectedProductData && (
         <Container>
-          <Header />
+          <Header number={dataLength} />
           <FilterOrderContainer>
             <HideNoInterestingFilter />
             <OrderFilter
@@ -167,10 +170,11 @@ class RecentListPage extends Component {
             selectedBrand={selectedBrand}
           />
           <ListContainer>
-            {selectedProductData.map((prouduct) => (
+            {selectedProductData.map((product) => (
               <Card
-                key={prouduct.title}
-                data={prouduct}
+                id={product.id}
+                key={product.title}
+                data={product}
                 goToProduct={goToProduct}
               />
             ))}

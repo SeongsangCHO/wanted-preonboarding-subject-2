@@ -15,13 +15,13 @@ import { logDOM } from "@testing-library/react";
 let interval;
 
 class App extends React.Component {
-  componentDidMount () {
+  componentDidMount() {
     interval = setInterval(() => {
-      this.checkTheTime()
+      this.checkTheTime();
     }, 1000);
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     clearInterval(interval);
   }
 
@@ -34,9 +34,9 @@ class App extends React.Component {
     let currentTime = `${hours < 10 ? `0${hours}` : hours}:${
       minutes < 10 ? `0${minutes}` : minutes
     }:${seconds < 10 ? `0${seconds}` : seconds}`;
-    
+
     if (currentTime === midnight) localStorage.removeItem("recentList");
-  }
+  };
 
   render() {
     return (
@@ -47,7 +47,7 @@ class App extends React.Component {
             <Route exact path='/'>
               <Redirect to='/recentList'></Redirect>
             </Route>
-            <Route path='/product' component={ProductPage} />
+            <Route path='/product/:id' component={ProductPage} />
             <Route path='/recentList' component={RecentListPage} />
           </Switch>
         </Container>

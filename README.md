@@ -7,12 +7,15 @@
 - 상품 조회 이력 페이지에서 상품의 필터와 정렬
   - recentOrderFilter로 최근 조회순, lowPriceOrderFilter로 낮은 가격순으로 상품 정렬
   - 관심 없는 상품 숨기기, selectBrand로 브랜드 명으로 상품 필터
-
 - checkTheTime을 통해 00시 상품 조회 이력 초기화
+
+</br>
 
 ## 📌 기본 요구 사항
 - Class Component를 사용해 구현
 - LocalStorage 사용해서 이력을 관리
+
+</br>
 
 ## 📌 설치 및 시작방법
 
@@ -24,6 +27,8 @@ $ npm start
 
 ```
 
+</br>
+
 ## 📌 프로젝트 구조 설명
 
 - Product : 상품을 랜덤 로드하고 상품 조회 이력에 추가, 관심 없음 등록
@@ -33,9 +38,12 @@ $ npm start
     - HideNoInterestingFilter : 관심 없는 상품 숨기기 필터
     - OrderFilter: 최근 조회순, 낮은 가격순으로 상품 정렬
 
+</br>
+
 ## 📌 기능 영상
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/55486644/127740694-5b4217c8-e903-4b5d-ae49-90387eda331f.gif)
 
+</br>
 
 ## 📌 팀원별 구현 기능
 

@@ -1,6 +1,5 @@
-import PropTypes from "prop-types";
 import { PageSelectorList, PageSelector } from "./style";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import React, { Component } from "react";
 
 class Navbar extends Component {
@@ -8,18 +7,6 @@ class Navbar extends Component {
     super(props);
     this.state = {};
   }
-
-  componentWillMount() {}
-
-  componentDidMount() {}
-
-  componentWillReceiveProps(nextProps) {}
-
-  componentWillUpdate(nextProps, nextState) {}
-
-  componentDidUpdate(prevProps, prevState) {}
-
-  componentWillUnmount() {}
 
   render() {
     return (

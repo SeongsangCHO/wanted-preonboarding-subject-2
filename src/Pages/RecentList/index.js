@@ -16,7 +16,6 @@ class RecentListPage extends Component {
       selectedBrand: [],
       productData: [],
       selectedProductData: [],
-      isSelected: [],
     };
   }
 
@@ -83,15 +82,12 @@ class RecentListPage extends Component {
         ),
       });
     }
-    if (!isSelected.length) {
-      this.setState({ isSelected: Array(brand.length).fill(false) });
-    }
   }
 
   // componentWillUnmount() {}
 
   render() {
-    const { brand, selectedProductData, isSelected } = this.state;
+    const { brand, selectedProductData, selectedBrand } = this.state;
     const { selectBrand } = this;
     return (
       selectedProductData && (
@@ -101,7 +97,11 @@ class RecentListPage extends Component {
             <HideNoInterestingFilter />
             <OrderFilter />
           </FilterOrderContainer>
-          <BrandFilter brand={brand} selectBrand={selectBrand} />
+          <BrandFilter
+            brand={brand}
+            selectBrand={selectBrand}
+            selectedBrand={selectedBrand}
+          />
           <ListContainer>
             {selectedProductData.map((prouduct) => (
               <Card key={prouduct.title} data={prouduct} />

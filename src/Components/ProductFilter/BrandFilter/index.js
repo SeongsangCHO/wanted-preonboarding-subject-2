@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { BrandList, Container } from "./style";
+import { BrandList, BrnadItem, Container } from "./style";
 
 class BrandFilter extends Component {
   constructor(props) {
@@ -40,24 +40,25 @@ class BrandFilter extends Component {
   componentWillUnmount() {}
 
   render() {
-    const { selectBrand, brand } = this.props;
+    const { selectBrand, brand, selectedBrand } = this.props;
     return (
       <Container>
         {/* <BrandList onClick={this.onBrandFilterItemClick}/> */}
         <BrandList>
-          <li data-kind='ALL' onClick={selectBrand}>
+          <BrnadItem data-kind='ALL' onClick={selectBrand}>
             전체
-          </li>
+          </BrnadItem>
           {brand.map((brandTitle) => {
             return (
-              <li
+              <BrnadItem
                 data-kind={brandTitle}
                 onClick={selectBrand}
                 value={brandTitle}
+                isSelected={selectedBrand.includes(brandTitle)}
                 key={brandTitle}
               >
                 {brandTitle}
-              </li>
+              </BrnadItem>
             );
           })}
         </BrandList>

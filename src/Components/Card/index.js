@@ -27,9 +27,9 @@ class Card extends React.Component {
   render() {
     const { hasInteresting } = this.state;
     const { title, price, isInteresting } = this.props.data;
-    const { goToProduct } = this.props;
+    const { goToProduct, hide } = this.props;
     return (
-      <ItemContainer>
+      <ItemContainer id='ct' className={hide && !hasInteresting ? "hide" : ""}>
         <ItemWrapper onClick={goToProduct}>
           <ItemTitle>
             <p>{title}</p>

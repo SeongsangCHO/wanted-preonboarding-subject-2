@@ -18,9 +18,10 @@ class HideNoInterestingFilter extends Component {
   componentWillUnmount() {}
 
   render() {
+    const { hideNoInterestingFilter } = this.props;
     return (
       <Container>
-        <input type='checkbox' />
+        <input type='checkbox' onChange={hideNoInterestingFilter} />
         <span> 관심없는 상품 숨기기</span>
       </Container>
     );

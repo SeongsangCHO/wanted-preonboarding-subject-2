@@ -2,6 +2,9 @@ import styled, { css } from "styled-components";
 
 export const ItemContainer = styled.div`
   position: relative;
+  &.hide {
+    display: none;
+  }
 `;
 
 export const ItemWrapper = styled.div`

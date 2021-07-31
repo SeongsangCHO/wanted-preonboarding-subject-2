@@ -19,6 +19,10 @@ class RecentListPage extends Component {
     };
   }
 
+  goToProduct = () => {
+    this.props.history.push("/product");
+  };
+
   makeBrnadData = () => {
     const { productData } = this.state;
     const brandArr = [];
@@ -77,13 +81,16 @@ class RecentListPage extends Component {
         ),
       });
     }
+    if (brand.length === selectedBrand.length) {
+      this.setState({ selectedBrand: [] });
+    }
   }
 
   // componentWillUnmount() {}
 
   render() {
     const { brand, selectedProductData, selectedBrand } = this.state;
-    const { selectBrand } = this;
+    const { selectBrand, goToProduct } = this;
     return (
       selectedProductData && (
         <Container>
@@ -99,7 +106,11 @@ class RecentListPage extends Component {
           />
           <ListContainer>
             {selectedProductData.map((prouduct) => (
-              <Card key={prouduct.title} data={prouduct} />
+              <Card
+                key={prouduct.title}
+                data={prouduct}
+                goToProduct={goToProduct}
+              />
             ))}
           </ListContainer>
         </Container>

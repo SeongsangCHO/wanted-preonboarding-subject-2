@@ -34,3 +34,4 @@ $ npm start
     - OrderFilter: 최근 조회순, 낮은 가격순으로 상품 정렬
 
 ## 기능 영상
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/55486644/127740694-5b4217c8-e903-4b5d-ae49-90387eda331f.gif)

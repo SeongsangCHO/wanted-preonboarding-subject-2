@@ -15,7 +15,7 @@ class Card extends React.Component {
   handleClick = () => {};
 
   render() {
-    const { title, price } = this.props.data;
+    const { title, price, isInteresting } = this.props.data;
     const { goToProduct } = this.props;
     return (
       <ItemContainer>
@@ -28,7 +28,11 @@ class Card extends React.Component {
           </ItemInfo>
         </ItemWrapper>
         <Button isHasInteresting={false} onClick={this.handleClick}>
-          <span>관심없음등록*ㅅ*</span>
+          {isInteresting ? (
+            <span>관심없음 등록</span>
+          ) : (
+            <span>관심없는 상태 *ㅅ*</span>
+          )}
         </Button>
       </ItemContainer>
     );

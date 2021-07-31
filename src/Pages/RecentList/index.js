@@ -54,9 +54,19 @@ class RecentListPage extends Component {
   // componentWillMount() {}
 
   componentDidMount() {
-    fetch("/MockData/data.json")
-      .then((response) => response.json())
-      .then((data) => this.setState({ productData: data }));
+    // fetch("/MockData/data.json")
+    //   .then((response) => response.json())
+    //   .then((data) => this.setState({ productData: data }));
+    const recentLocalData = JSON.parse(localStorage.getItem("recentList"));
+    if (recentLocalData === null) {
+      this.setState({
+        productData: [],
+      });
+    } else {
+      this.setState({
+        productData: [...recentLocalData],
+      });
+    }
   }
 
   // componentWillReceiveProps(nextProps) {}
@@ -71,17 +81,21 @@ class RecentListPage extends Component {
     if (productData.length && !brand.length) {
       this.makeBrnadData();
     }
-    if (!selectedProductData.length && !selectedBrand.length) {
-      this.setState({ selectedProductData: productData });
+    if (
+      productData.length > 0 &&
+      !selectedProductData.length &&
+      !selectedBrand.length
+    ) {
+      this.setState({ selectedProductData: [...productData] });
     }
-    if (prevState.selectedBrand.length !== selectedBrand.length) {
+    if (prevState.selectedBrand.length !== selectedBrand?.length) {
       this.setState({
         selectedProductData: productData.filter((product) =>
           selectedBrand.some((p) => [product.brand].includes(p))
         ),
       });
     }
-    if (brand.length === selectedBrand.length) {
+    if (productData.length > 0 && brand.length === selectedBrand.length) {
       this.setState({ selectedBrand: [] });
     }
   }

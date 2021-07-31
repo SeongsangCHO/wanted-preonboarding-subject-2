@@ -14,21 +14,29 @@ import {
 } from "./style";
 import PropTypes from "prop-types";
 import Navbar from "../../Components/Navbar";
+import CautionMessage from "../../Modals/CautionMessage"
 
 class RecentListPage extends Component {
   constructor(props) {
     super(props);
+    this.state={
+      open:false,
+    }
   }
 
-  componentWillMount() {}
 
-  componentDidMount() {}
+  openModal = () => {
+    this.setState({open:true});
+    const closeTimer = setTimeout(()=>{
+      this.closeModal();
+    },2000);
+  }
 
-  componentWillReceiveProps(nextProps) {}
+  closeModal = () => {
+    this.setState({open:false});
+  }
 
-  componentDidUpdate(prevProps, prevState) {}
 
-  componentWillUnmount() {}
 
   render() {
     return (
@@ -65,6 +73,7 @@ class RecentListPage extends Component {
             </ItemInfo>
           </ItemWrapper>
         </ListContainer>
+        <CautionMessage open={this.state.open}></CautionMessage>
       </Container>
     );
   }

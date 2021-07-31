@@ -111,7 +111,7 @@ class ProductPage extends Component {
     localStorage.setItem(itemName, JSON.stringify(data));
   };
   getApiData = async () => {
-    const fetchApiData = await fetch(`${BASE_URL}/MockData/data.json`);
+    const fetchApiData = await fetch(`/MockData/data.json`);
     const apiData = await fetchApiData.json();
     this.setState({
       printableData: [
@@ -123,7 +123,7 @@ class ProductPage extends Component {
   async componentDidMount() {
     const localData = await this.getLocalStorageData("printableLocalData");
     if (localStorage.getItem("printableLocalData") === null) {
-      const fetchApiData = await fetch(`${BASE_URL}/MockData/data.json`);
+      const fetchApiData = await fetch(`/MockData/data.json`);
       const apiData = await fetchApiData.json();
 
       this.setState({

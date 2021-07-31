@@ -15,8 +15,7 @@ class Card extends React.Component {
         </ItemTitle>
         <ItemInfo>
           <Button isHasInteresting={false}>
-            <img alt='*ㅅ*' />
-            <span>관심없음등록</span>
+            <span>관심없음등록*ㅅ*</span>
           </Button>
           <p>{`${price.toLocaleString()}원`}</p>
         </ItemInfo>

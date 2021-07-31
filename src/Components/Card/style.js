@@ -9,6 +9,7 @@ export const ItemWrapper = styled.div`
   border: 0.5px solid black;
   margin-top: 10px;
   padding: 20px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
 
 export const ItemTitle = styled.div`
@@ -37,9 +38,16 @@ export const Button = styled.button`
   border: 0.5px solid black;
   color: black;
   border-radius: 20px;
-  padding: 5px;
+  padding: 7px;
   margin-bottom: 10px;
   background-color: #fff;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+
+  &:hover {
+    color: #fff;
+    background-color: black;
+  }
 
   ${({ isHasInteresting }) =>
     isHasInteresting &&

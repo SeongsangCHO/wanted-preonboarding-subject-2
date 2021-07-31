@@ -6,12 +6,12 @@ import {
   ItemInfo,
   Button,
 } from "./style";
+import { toggleInteresting } from "../../Utils/Hooks/updateRecentList";
 
 class Card extends React.Component {
   constructor(props) {
     super(props);
   }
-
   handleClick = () => {};
 
   render() {
@@ -27,9 +27,9 @@ class Card extends React.Component {
             <p>{`${price.toLocaleString()}원`}</p>
           </ItemInfo>
         </ItemWrapper>
-        <Button isHasInteresting={false} onClick={this.handleClick}>
+        <Button isInteresting={false} onClick={this.handleClick}>
           {isInteresting ? (
-            <span>관심없음 등록</span>
+            <span onClick={toggleInteresting}>관심없음 등록</span>
           ) : (
             <span>관심없는 상태 *ㅅ*</span>
           )}

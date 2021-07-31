@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/wanted-preonboarding-subject2/static/js/main.7e3703a8.chunk.js",
-    "main.js.map": "/wanted-preonboarding-subject2/static/js/main.7e3703a8.chunk.js.map",
+    "main.js": "/wanted-preonboarding-subject2/static/js/main.69ce3084.chunk.js",
+    "main.js.map": "/wanted-preonboarding-subject2/static/js/main.69ce3084.chunk.js.map",
     "runtime-main.js": "/wanted-preonboarding-subject2/static/js/runtime-main.6c5620bb.js",
     "runtime-main.js.map": "/wanted-preonboarding-subject2/static/js/runtime-main.6c5620bb.js.map",
     "static/js/2.7900452b.chunk.js": "/wanted-preonboarding-subject2/static/js/2.7900452b.chunk.js",
@@ -14,6 +14,6 @@
   "entrypoints": [
     "static/js/runtime-main.6c5620bb.js",
     "static/js/2.7900452b.chunk.js",
-    "static/js/main.7e3703a8.chunk.js"
+    "static/js/main.69ce3084.chunk.js"
   ]
 }

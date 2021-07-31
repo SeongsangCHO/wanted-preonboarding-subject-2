@@ -3,8 +3,12 @@ import PropTypes from "prop-types";
 import Header from "../../Components/Header";
 import { Container } from "../../Components/Header/style";
 import { randomNumber } from "../../Utils/Hooks/randomNumber";
-// const BASE_URL = "http://localhost:3001";
+import {
+  getLocalStorageData,
+  setLocalStorageData,
+} from "../../Utils/Hooks/localStorageUtil";
 
+// const BASE_URL = "http://localhost:3001";
 class ProductPage extends Component {
   constructor(props) {
     super(props);
@@ -17,13 +21,13 @@ class ProductPage extends Component {
   }
 
   setRecentListNoInterestingData = (isInteresting) => {
-    const recentLocal = this.getLocalStorageData("recentList");
+    const recentLocal = getLocalStorageData("recentList");
     if (
       recentLocal.some(
         (item) => item?.title === this.state.currentPrintData.title
       )
     ) {
-      this.setLocalStorageData("recentList", [
+      setLocalStorageData("recentList", [
         ...recentLocal.filter(
           (item) => item.title !== this.state.currentPrintData.title
         ),
@@ -34,7 +38,7 @@ class ProductPage extends Component {
         },
       ]);
     } else {
-      this.setLocalStorageData("recentList", [
+      setLocalStorageData("recentList", [
         ...recentLocal,
         {
           ...this.state.currentPrintData,
@@ -43,7 +47,7 @@ class ProductPage extends Component {
         },
       ]);
     }
-    this.setLocalStorageData("printableLocalData", this.state.printableData);
+    setLocalStorageData("printableLocalData", this.state.printableData);
   };
 
   noInteresting = () => {
@@ -87,54 +91,7 @@ class ProductPage extends Component {
     this.props.history.push(`/product/${randomIndex + 1}`);
   };
 
-  getLocalStorageData = (dataName) => {
-    const localData = localStorage.getItem(dataName);
-    if (localData === null) {
-      return [];
-    }
-    return JSON.parse(localData);
-  };
-
-  setLocalStorageData = (itemName, data) => {
-    localStorage.setItem(itemName, JSON.stringify(data));
-  };
-  getApiData = async () => {
-    const fetchApiData = await fetch(`/MockData/data.json`);
-    const apiData = await fetchApiData.json();
-    this.setState({
-      printableData: [
-        ...apiData.map((data, index) => ({
-          ...data,
-          isInteresting: true,
-          id: index + 1,
-        })),
-      ],
-    });
-  };
-
-  async componentDidMount() {
-    const localData = await this.getLocalStorageData("printableLocalData");
-    if (localStorage.getItem("printableLocalData") === null) {
-      const fetchApiData = await fetch(`/MockData/data.json`);
-      const apiData = await fetchApiData.json();
-
-      this.setState({
-        printableData: [
-          ...apiData.map((data, index) => ({
-            ...data,
-            isInteresting: true,
-            id: index + 1,
-          })),
-        ],
-      });
-      this.setLocalStorageData("printableLocalData", this.state.printableData);
-    } else if (localData.length === 0) {
-    } else {
-      this.setState({
-        printableData: [...localData],
-      });
-    }
-
+  upDateState = () => {
     const targetId = parseInt(this.props.match.params.id) - 1;
     if (targetId < 0 || targetId > this.state.printableData.length) {
       alert("상품이 없습니다");
@@ -150,6 +107,58 @@ class ProductPage extends Component {
       }),
       () => this.setRecentListNoInterestingData(true)
     );
+  };
+
+  // getLocalStorageData = (dataName) => {
+  //   const localData = localStorage.getItem(dataName);
+  //   if (localData === null) {
+  //     return [];
+  //   }
+  //   return JSON.parse(localData);
+  // };
+
+  // setLocalStorageData = (itemName, data) => {
+  //   localStorage.setItem(itemName, JSON.stringify(data));
+  // };
+
+  // getApiData = async () => {
+  //   const fetchApiData = await fetch(`/MockData/data.json`);
+  //   const apiData = await fetchApiData.json();
+  //   this.setState({
+  //     printableData: [
+  //       ...apiData.map((data, index) => ({
+  //         ...data,
+  //         isInteresting: true,
+  //         id: index + 1,
+  //       })),
+  //     ],
+  //   });
+  // };
+
+  async componentDidMount() {
+    // const localData = await this.getLocalStorageData("printableLocalData");
+    // if (localStorage.getItem("printableLocalData") === null) {
+    //   const fetchApiData = await fetch(`/MockData/data.json`);
+    //   const apiData = await fetchApiData.json();
+    //   this.setState({
+    //     printableData: [
+    //       ...apiData.map((data, index) => ({
+    //         ...data,
+    //         isInteresting: true,
+    //         id: index + 1,
+    //       })),
+    //     ],
+    //   });
+    //   this.setLocalStorageData("printableLocalData", this.state.printableData);
+    // } else if (localData.length === 0) {
+    // } else {
+    //   this.setState({
+    //     printableData: [...localData],
+    //   });
+    // }
+    const productData = getLocalStorageData("printableLocalData");
+
+    this.setState({ printableData: productData }, () => this.upDateState());
   }
 
   componentDidUpdate() {
@@ -159,7 +168,7 @@ class ProductPage extends Component {
   }
 
   componentWillUnmount() {
-    this.setLocalStorageData("printableLocalData", this.state.printableData);
+    setLocalStorageData("printableLocalData", this.state.printableData);
   }
 
   render() {

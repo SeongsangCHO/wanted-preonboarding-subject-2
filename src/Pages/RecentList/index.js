@@ -8,6 +8,10 @@ import PropTypes from "prop-types";
 import Navbar from "../../Components/Navbar";
 import CautionMessage from "../../Modals/CautionMessage";
 import Card from "../../Components/Card";
+import {
+  getLocalStorageData,
+  setLocalStorageData,
+} from "../../Utils/Hooks/localStorageUtil";
 
 class RecentListPage extends Component {
   constructor(props) {
@@ -18,6 +22,7 @@ class RecentListPage extends Component {
       selectedBrand: [],
       productData: [],
       selectedProductData: [],
+      printableData: [],
       value: "recentOrder",
     };
   }
@@ -93,10 +98,31 @@ class RecentListPage extends Component {
 
   // componentWillMount() {}
 
-  componentDidMount() {
+  async componentDidMount() {
     // fetch("/MockData/data.json")
     //   .then((response) => response.json())
     //   .then((data) => this.setState({ productData: data }));
+    const localData = await getLocalStorageData("printableLocalData");
+    if (localStorage.getItem("printableLocalData") === null) {
+      const fetchApiData = await fetch(`/MockData/data.json`);
+      const apiData = await fetchApiData.json();
+      this.setState({
+        printableData: [
+          ...apiData.map((data, index) => ({
+            ...data,
+            isInteresting: true,
+            id: index + 1,
+          })),
+        ],
+      });
+      setLocalStorageData("printableLocalData", this.state.printableData);
+    } else if (localData.length === 0) {
+    } else {
+      this.setState({
+        printableData: [...localData],
+      });
+    }
+
     const recentLocalData = JSON.parse(localStorage.getItem("recentList"));
     if (recentLocalData === null) {
       this.setState({
@@ -148,10 +174,9 @@ class RecentListPage extends Component {
   // componentWillUnmount() {}
 
   render() {
-    const { brand, selectedProductData, selectedBrand, value } = this.state;
-    const dataLength = JSON.parse(
-      localStorage.getItem("printableLocalData")
-    ).length;
+    const { brand, selectedProductData, selectedBrand, value, printableData } =
+      this.state;
+    const dataLength = printableData.length;
     const { selectBrand, goToProduct } = this;
     return (
       selectedProductData && (

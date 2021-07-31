@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Header from "../../Components/Header";
 import { Container } from "../../Components/Header/style";
-const BASE_URL = "http://localhost:3001";
+const BASE_URL = "http://localhost:3000";
 
 class ProductPage extends Component {
   constructor(props) {

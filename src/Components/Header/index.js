@@ -21,7 +21,7 @@ class Header extends Component {
   render() {
     return (
       <Container>
-        <Navbar></Navbar>
+        <Navbar number={this.props.number} />
       </Container>
     );
   }

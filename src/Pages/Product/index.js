@@ -157,11 +157,10 @@ class ProductPage extends Component {
   }
 
   render() {
-    const { printableData, currentTitle, currentPrintData } = this.state;
+    const { printableData, currentTitle } = this.state;
     return (
       <Container>
         <Header></Header>
-        {console.log(currentPrintData.id)}
         {printableData.length === 0 ? (
           <div>너가 다 관심없다 해따 가서 지워와~</div>
         ) : (

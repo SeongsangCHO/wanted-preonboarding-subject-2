@@ -1,10 +1,20 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Header from "../../Components/Header";
-import { ProductWrapper, ArrowRepeat, Button, EmptyMessageFlexBox, EmptyIcon, EmptyMessage, Brand, Title, Price } from "../Product/style";
+import {
+  ProductWrapper,
+  ArrowRepeat,
+  Button,
+  EmptyMessageFlexBox,
+  EmptyIcon,
+  EmptyMessage,
+  Brand,
+  Title,
+  Price,
+} from "../Product/style";
 import { Container } from "../../Components/Header/style";
 
-const BASE_URL = "http://localhost:3000"; 
+const BASE_URL = "http://localhost:3000";
 
 class ProductPage extends Component {
   constructor(props) {
@@ -137,7 +147,7 @@ class ProductPage extends Component {
 
   render() {
     const { printableData, currentPrintData } = this.state;
-    const { price } = currentPrintData; 
+    const { price } = currentPrintData;
     return (
       <Container>
         <Header></Header>
@@ -151,7 +161,9 @@ class ProductPage extends Component {
         ) : (
           <ProductWrapper>
             <Brand>{currentPrintData.brand}</Brand>
-            <ArrowRepeat onClick={printableData.length !== 1 && this.randomPicker} />
+            <ArrowRepeat
+              onClick={printableData.length !== 1 ? this.randomPicker : null}
+            />
             <Button onClick={this.noInteresting}>관심없음 등록</Button>
             <Title>{currentPrintData.title}</Title>
             <Price>{`${Number(price).toLocaleString()}원`}</Price>

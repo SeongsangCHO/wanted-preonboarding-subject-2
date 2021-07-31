@@ -40,7 +40,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <Router basename='http://seongsangCHO.github.io/wanted-preonboarding-subject2'>
+      <Router>
         <GlobalStyle />
         <Container>
           <Switch>
